@@ -37,17 +37,17 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div className="form-card mx-auto max-w-md mt-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full bg-white/80 backdrop-blur-lg rounded-xl shadow-lg p-8 space-y-8">
         <div>
-          <h2 className="heading-1 text-center">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
             Sign in to your account
           </h2>
-          <p className="subtitle text-center mt-2">
+          <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
             <Link
               to="/register"
-              className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 hover:text-indigo-500 transition-colors"
             >
               create a new account
             </Link>
@@ -56,7 +56,7 @@ export default function Login() {
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="rounded-md bg-red-50 p-4 border-l-4 border-red-500">
+            <div className="rounded-lg bg-red-50/80 backdrop-blur-sm p-4 border-l-4 border-red-500">
               <p className="text-sm text-red-700">{error}</p>
             </div>
           )}
@@ -72,7 +72,7 @@ export default function Login() {
                 type="email"
                 autoComplete="email"
                 required
-                className="input-field"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 placeholder="Enter your email"
               />
             </div>
@@ -86,7 +86,7 @@ export default function Login() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="input-field"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 placeholder="Enter your password"
               />
             </div>
@@ -96,7 +96,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="btn-primary w-full"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 disabled:opacity-50"
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>

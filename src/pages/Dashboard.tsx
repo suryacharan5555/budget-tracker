@@ -13,6 +13,8 @@ interface DashboardStats {
   totalExpenses: number;
   totalSavings: number;
   remainingBudget: number;
+  dailyBudget: number;
+  remainingDays: number;
   expensesByCategory: {
     category: string;
     amount: number;
@@ -54,6 +56,14 @@ export default function Dashboard() {
         const totalSavings = budget.savingsGoal || 0;
         const remainingBudget = budget.monthlyIncome - totalExpenses - totalSavings;
 
+        // Calculate remaining days in current month
+        const today = new Date();
+        const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        const remainingDays = lastDayOfMonth.getDate() - today.getDate() + 1;
+        
+        // Calculate daily budget from remaining budget
+        const dailyBudget = remainingBudget / remainingDays;
+
         // Group expenses by category
         const expensesByCategory = expenses.reduce((acc: any[], expense: any) => {
           const existing = acc.find(item => item.category === expense.category);
@@ -70,6 +80,8 @@ export default function Dashboard() {
           totalExpenses,
           totalSavings,
           remainingBudget,
+          dailyBudget,
+          remainingDays,
           expensesByCategory
         });
       } catch (error) {
@@ -125,24 +137,24 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow backdrop-blur-sm">
           <div className="flex items-center">
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-600">Total Budget</p>
-              <p className="text-2xl font-semibold text-gray-900">
+              <p className="text-sm font-medium text-purple-600">Total Budget</p>
+              <p className="text-2xl font-semibold text-purple-900">
                 ₹{stats.totalBudget.toLocaleString()}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-gradient-to-br from-red-50 to-red-100 p-6 shadow backdrop-blur-sm">
           <div className="flex items-center">
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-600">Total Expenses</p>
-              <p className="text-2xl font-semibold text-red-600">
+              <p className="text-sm font-medium text-red-600">Total Expenses</p>
+              <p className="text-2xl font-semibold text-red-700">
                 ₹{stats.totalExpenses.toLocaleString()}
               </p>
             </div>
@@ -150,11 +162,11 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-gradient-to-br from-green-50 to-green-100 p-6 shadow backdrop-blur-sm">
           <div className="flex items-center">
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-600">Total Savings</p>
-              <p className="text-2xl font-semibold text-green-600">
+              <p className="text-sm font-medium text-green-600">Total Savings</p>
+              <p className="text-2xl font-semibold text-green-700">
                 ₹{stats.totalSavings.toLocaleString()}
               </p>
             </div>
@@ -162,16 +174,16 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow backdrop-blur-sm">
           <div className="flex items-center">
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-600">
+              <p className="text-sm font-medium text-blue-600">
                 Remaining Budget
               </p>
               <p
                 className={`text-2xl font-semibold ${
                   stats.remainingBudget >= 0
-                    ? 'text-gray-900'
+                    ? 'text-blue-700'
                     : 'text-red-600'
                 }`}
               >
@@ -185,10 +197,28 @@ export default function Dashboard() {
             )}
           </div>
         </div>
+
+        <div className="col-span-2 overflow-hidden rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 p-6 shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-white">Daily Budget (Next {stats.remainingDays} days)</p>
+              <p className="text-3xl font-semibold text-white">
+                ₹{stats.dailyBudget.toFixed(2)}
+              </p>
+              <p className="mt-1 text-sm text-blue-100">per day</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-blue-100">Monthly Budget</p>
+              <p className="text-xl font-semibold text-white">
+                ₹{stats.remainingBudget.toLocaleString()}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-white p-6 shadow backdrop-blur-sm bg-white/90">
           <h3 className="mb-4 text-lg font-medium text-gray-900">
             Expenses by Category
           </h3>
@@ -203,7 +233,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg bg-white p-6 shadow">
+        <div className="overflow-hidden rounded-lg bg-white p-6 shadow backdrop-blur-sm bg-white/90">
           <h3 className="mb-4 text-lg font-medium text-gray-900">
             Category Breakdown
           </h3>

@@ -114,17 +114,17 @@ export default function ExpenseTracker() {
   }
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">Track Expenses</h2>
-        <p className="text-gray-600">
+    <div className="min-h-screen space-y-8 bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="text-center">
+        <h2 className="text-3xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Track Expenses</h2>
+        <p className="mt-2 text-gray-600">
           Add your expenses and categorize them for better tracking.
         </p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-6">
-          <div className="rounded-lg bg-white p-6 shadow">
+          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
             <h3 className="text-lg font-medium text-gray-900">Add Expense</h3>
 
             <form onSubmit={handleSubmit} className="mt-4 space-y-4">
@@ -148,7 +148,7 @@ export default function ExpenseTracker() {
                   min="0"
                   step="1"
                   required
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 />
               </div>
 
@@ -163,7 +163,7 @@ export default function ExpenseTracker() {
                   name="category"
                   id="category"
                   required
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 >
                   <option value="">Select a category</option>
                   {categories.map((category) => (
@@ -185,7 +185,7 @@ export default function ExpenseTracker() {
                   type="text"
                   name="description"
                   id="description"
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 />
               </div>
 
@@ -201,13 +201,13 @@ export default function ExpenseTracker() {
                     {tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                        className="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-700"
                       >
                         {tag}
                         <button
                           type="button"
                           onClick={() => handleRemoveTag(tag)}
-                          className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-primary/20"
+                          className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500"
                         >
                           ×
                         </button>
@@ -220,7 +220,7 @@ export default function ExpenseTracker() {
                     onChange={(e) => setNewTag(e.target.value)}
                     onKeyDown={handleAddTag}
                     placeholder="Type and press Enter to add tags"
-                    className="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm mt-2"
                   />
                 </div>
               </div>
@@ -228,7 +228,7 @@ export default function ExpenseTracker() {
               <div>
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
                 >
                   Add Expense
                 </button>
@@ -238,8 +238,8 @@ export default function ExpenseTracker() {
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-lg bg-white p-6 shadow">
-            <h3 className="text-lg font-medium text-gray-900">
+          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               Recent Expenses
             </h3>
 
@@ -252,7 +252,7 @@ export default function ExpenseTracker() {
                 expenses.map((expense) => (
                   <div
                     key={expense.id}
-                    className="flex items-center justify-between border-b border-gray-200 pb-4 last:border-0 last:pb-0"
+                    className="flex items-center justify-between border-b border-gray-200/50 pb-4 last:border-0 last:pb-0 backdrop-blur-sm hover:bg-white/50 rounded-lg p-3 transition-all duration-200"
                   >
                     <div className="space-y-1">
                       <p className="font-medium text-gray-900">
@@ -267,7 +267,7 @@ export default function ExpenseTracker() {
                           {expense.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
+                              className="rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-600"
                             >
                               {tag}
                             </span>
@@ -275,7 +275,7 @@ export default function ExpenseTracker() {
                         </div>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 bg-gray-50 px-2 py-1 rounded-md">
                       {new Date(expense.date).toLocaleDateString()}
                     </p>
                   </div>

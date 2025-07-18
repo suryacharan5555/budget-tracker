@@ -85,36 +85,36 @@ export default function SavingsGoals() {
   );
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">Savings Goals</h2>
-        <p className="text-gray-600">Track your progress towards savings goals.</p>
+    <div className="min-h-screen space-y-8 bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="text-center">
+        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Savings Goals</h2>
+        <p className="mt-2 text-gray-600">Track your progress towards savings goals.</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-6">
-          <div className="rounded-lg bg-white p-6 shadow">
+          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
             <h3 className="text-lg font-medium text-gray-900">
               Savings Progress
             </h3>
             <div className="mt-4 space-y-4">
               <div>
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-indigo-600">
                     Current Savings
                   </p>
                   <p className="text-sm font-medium text-gray-900">
                     ₹{savingsData.currentSavings.toLocaleString()}
                   </p>
                 </div>
-                <div className="mt-4 h-2 rounded-full bg-gray-200">
+                <div className="mt-4 h-3 rounded-full bg-indigo-100">
                   <div
-                    className="h-2 rounded-full bg-primary transition-all"
+                    className="h-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-500"
                     style={{ width: `${savingsPercentage}%` }}
                   />
                 </div>
                 <div className="mt-2 flex items-center justify-between text-sm">
-                  <p className="text-gray-600">
+                  <p className="text-indigo-600 font-medium">
                     {savingsPercentage.toFixed(1)}% of goal
                   </p>
                   <p className="font-medium text-gray-900">
@@ -124,27 +124,27 @@ export default function SavingsGoals() {
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-indigo-600">
                   Monthly Savings
                 </p>
-                <p className="mt-1 text-2xl font-semibold text-gray-900">
+                <p className="mt-1 text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   ₹{savingsData.monthlySavings.toLocaleString()}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg bg-white p-6 shadow">
-            <h3 className="text-lg font-medium text-gray-900">Smart Tips</h3>
+          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Smart Tips</h3>
             <div className="mt-4 space-y-4">
               {savingsData.recommendations.map((tip, index) => (
                 <div
                   key={index}
-                  className="flex items-start space-x-3 rounded-lg bg-primary/5 p-4"
+                  className="flex items-start space-x-3 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 p-4 hover:from-blue-100 hover:to-indigo-100 transition-all duration-200"
                 >
                   <div className="flex-shrink-0">
                     <svg
-                      className="h-6 w-6 text-primary"
+                      className="h-6 w-6 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -157,7 +157,7 @@ export default function SavingsGoals() {
                       />
                     </svg>
                   </div>
-                  <p className="text-sm text-gray-600">{tip}</p>
+                  <p className="text-sm text-gray-700">{tip}</p>
                 </div>
               ))}
             </div>
@@ -165,13 +165,13 @@ export default function SavingsGoals() {
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-lg bg-white p-6 shadow">
-            <h3 className="text-lg font-medium text-gray-900">Export Data</h3>
+          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Export Data</h3>
             <div className="mt-4 space-y-4">
               <div>
                 <label
                   htmlFor="exportFormat"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 mb-1"
                 >
                   Export Format
                 </label>
@@ -181,7 +181,7 @@ export default function SavingsGoals() {
                   onChange={(e) =>
                     setExportFormat(e.target.value as 'csv' | 'json')
                   }
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
                 >
                   <option value="csv">CSV</option>
                   <option value="json">JSON</option>
@@ -190,7 +190,7 @@ export default function SavingsGoals() {
 
               <button
                 onClick={handleExportData}
-                className="w-full rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
               >
                 Export Data
               </button>

@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    background: linear-gradient(to bottom right, #eff6ff, #eef2ff);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
