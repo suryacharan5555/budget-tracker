@@ -18,6 +18,11 @@ const Layout = () => {
     navigate('/login');
   };
 
+  // Add bg-main class to ensure background image is always visible
+  if (document.body.className.indexOf('bg-main') === -1) {
+    document.body.className += ' bg-main';
+  }
+
   const navigation = [
     { name: 'Dashboard', href: '/', icon: HomeIcon },
     { name: 'Financial Setup', href: '/setup', icon: CurrencyRupeeIcon },

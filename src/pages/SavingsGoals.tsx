@@ -85,8 +85,8 @@ export default function SavingsGoals() {
   );
 
   return (
-    <div className="min-h-screen space-y-8 bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
-      <div className="text-center">
+    <div className="savings-goals bg-main space-y-8 p-6">
+      <div className="card p-8 text-center backdrop-blur-lg max-w-2xl mx-auto">
         <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Savings Goals</h2>
         <p className="mt-2 text-gray-600">Track your progress towards savings goals.</p>
       </div>

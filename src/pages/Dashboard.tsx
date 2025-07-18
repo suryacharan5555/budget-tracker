@@ -137,7 +137,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="space-y-8 min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <div className="dashboard-page bg-main space-y-8 p-6">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div className="overflow-hidden rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow backdrop-blur-sm">
           <div className="flex items-center">

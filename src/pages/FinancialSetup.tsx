@@ -49,9 +49,9 @@ export default function FinancialSetup() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <div className="financial-setup bg-main p-6">
       <div className="max-w-2xl mx-auto space-y-8">
-        <div className="text-center">
+        <div className="card p-8 text-center backdrop-blur-lg">
           <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Financial Setup</h2>
           <p className="mt-2 text-gray-600">
             Set up your monthly budget to help you track your expenses and savings effectively.

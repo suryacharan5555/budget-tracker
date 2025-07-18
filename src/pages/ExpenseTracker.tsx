@@ -114,9 +114,9 @@ export default function ExpenseTracker() {
   }
 
   return (
-    <div className="min-h-screen space-y-8 bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
-      <div className="text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Track Expenses</h2>
+    <div className="expense-tracker bg-main space-y-8 p-6">
+      <div className="card p-8 text-center backdrop-blur-lg max-w-2xl mx-auto">
+        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Track Expenses</h2>
         <p className="mt-2 text-gray-600">
           Add your expenses and categorize them for better tracking.
         </p>
