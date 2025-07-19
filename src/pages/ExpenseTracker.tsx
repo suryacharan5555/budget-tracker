@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReceiptRefundIcon as ReceiptIcon, TagIcon } from '@heroicons/react/24/solid';
 import api from '../lib/api';
 import { useAuthStore } from '../store/authStore';
 
@@ -114,31 +115,28 @@ export default function ExpenseTracker() {
   }
 
   return (
-    <div className="expense-tracker bg-main space-y-8 p-6">
-      <div className="card p-8 text-center backdrop-blur-lg max-w-2xl mx-auto">
-        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Track Expenses</h2>
-        <p className="mt-2 text-gray-600">
-          Add your expenses and categorize them for better tracking.
-        </p>
-      </div>
+    <div className="bg-main min-h-screen py-6 px-4">
+      <div className="space-y-6 animate-fadeIn">
+        <div className="grid gap-6 lg:grid-cols-12">
+        {/* Add Expense Form */}
+        <div className="lg:col-span-5">
+          <div className="form-card">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-gray-900">Add Expense</h2>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4361ee]/10">
+                <ReceiptIcon className="h-5 w-5 text-[#4361ee]" />
+              </div>
+            </div>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="space-y-6">
-          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
-            <h3 className="text-lg font-medium text-gray-900">Add Expense</h3>
-
-            <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {error && (
-                <div className="rounded-md bg-red-50 p-4">
-                  <p className="text-sm text-red-700">{error}</p>
+                <div className="rounded-lg bg-[#f72585]/10 p-4 text-[#f72585]">
+                  <p className="text-sm font-medium">{error}</p>
                 </div>
               )}
 
               <div>
-                <label
-                  htmlFor="amount"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
                   Amount (₹)
                 </label>
                 <input
@@ -148,22 +146,20 @@ export default function ExpenseTracker() {
                   min="0"
                   step="1"
                   required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
+                  className="input-field"
+                  placeholder="Enter expense amount"
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="category"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                   Category
                 </label>
                 <select
                   name="category"
                   id="category"
                   required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
+                  className="input-field"
                 >
                   <option value="">Select a category</option>
                   {categories.map((category) => (
@@ -175,39 +171,34 @@ export default function ExpenseTracker() {
               </div>
 
               <div>
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                   Description (Optional)
                 </label>
                 <input
                   type="text"
                   name="description"
                   id="description"
-                  className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
+                  className="input-field"
+                  placeholder="Add a description"
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="tags"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                   Tags (Optional)
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 space-y-2">
                   <div className="flex flex-wrap gap-2">
                     {tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-700"
+                        className="inline-flex items-center rounded-full bg-[#4361ee]/10 px-2.5 py-0.5 text-xs font-medium text-[#4361ee]"
                       >
                         {tag}
                         <button
                           type="button"
                           onClick={() => handleRemoveTag(tag)}
-                          className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500"
+                          className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-[#4361ee]/20"
                         >
                           ×
                         </button>
@@ -220,69 +211,83 @@ export default function ExpenseTracker() {
                     onChange={(e) => setNewTag(e.target.value)}
                     onKeyDown={handleAddTag}
                     placeholder="Type and press Enter to add tags"
-                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm mt-2"
+                    className="input-field"
                   />
                 </div>
               </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
-                >
-                  Add Expense
-                </button>
-              </div>
+              <button type="submit" className="btn-primary w-full">
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="loading-spinner mr-2" />
+                    Adding...
+                  </div>
+                ) : (
+                  'Add Expense'
+                )}
+              </button>
             </form>
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              Recent Expenses
-            </h3>
+        {/* Recent Expenses List */}
+        <div className="lg:col-span-7">
+          <div className="form-card">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-gray-900">Recent Expenses</h2>
+              <span className="text-sm text-gray-500">{expenses.length} total</span>
+            </div>
 
-            <div className="mt-4 space-y-4">
+            <div className="mt-6 space-y-4">
               {expenses.length === 0 ? (
-                <p className="text-center text-gray-500">
-                  No expenses recorded yet.
-                </p>
+                <div className="rounded-lg border-2 border-dashed border-gray-200 p-6 text-center">
+                  <ReceiptIcon className="mx-auto h-8 w-8 text-gray-400" />
+                  <p className="mt-2 text-sm font-medium text-gray-900">No expenses recorded</p>
+                  <p className="mt-1 text-sm text-gray-500">Start adding your expenses using the form</p>
+                </div>
               ) : (
                 expenses.map((expense) => (
                   <div
                     key={expense.id}
-                    className="flex items-center justify-between border-b border-gray-200/50 pb-4 last:border-0 last:pb-0 backdrop-blur-sm hover:bg-white/50 rounded-lg p-3 transition-all duration-200"
+                    className="flex items-start justify-between rounded-lg border border-gray-100 p-4 transition-all hover:shadow-sm"
                   >
-                    <div className="space-y-1">
-                      <p className="font-medium text-gray-900">
-                        ₹{expense.amount.toLocaleString()}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        {expense.category}
-                        {expense.description && ` - ${expense.description}`}
-                      </p>
-                      {expense.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {expense.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-600"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                    <div className="flex items-start space-x-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4361ee]/10">
+                        <TagIcon className="h-5 w-5 text-[#4361ee]" />
+                      </div>
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <p className="text-sm font-medium text-gray-900">{expense.category}</p>
+                          <time className="text-xs text-gray-500">
+                            {new Date(expense.date).toLocaleDateString()}
+                          </time>
                         </div>
-                      )}
+                        {expense.description && (
+                          <p className="mt-1 text-sm text-gray-600">{expense.description}</p>
+                        )}
+                        {expense.tags.length > 0 && (
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {expense.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="inline-flex items-center rounded-full bg-[#4cc9f0]/10 px-2 py-0.5 text-xs font-medium text-[#4cc9f0]"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-500 bg-gray-50 px-2 py-1 rounded-md">
-                      {new Date(expense.date).toLocaleDateString()}
+                    <p className="text-sm font-medium text-gray-900">
+                      ₹{expense.amount.toLocaleString()}
                     </p>
                   </div>
                 ))
               )}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

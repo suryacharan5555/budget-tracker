@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CurrencyRupeeIcon } from '@heroicons/react/24/solid';
 import api from '../lib/api';
 import { useAuthStore } from '../store/authStore';
 
@@ -49,125 +50,152 @@ export default function FinancialSetup() {
   };
 
   return (
-    <div className="financial-setup bg-main p-6">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <div className="card p-8 text-center backdrop-blur-lg">
-          <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Financial Setup</h2>
-          <p className="mt-2 text-gray-600">
-            Set up your monthly budget to help you track your expenses and savings effectively.
+    <div className="bg-main min-h-screen py-6 px-4">
+      <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn">
+        <div className="form-card">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-gray-900">Financial Setup</h2>
+          <p className="text-gray-600">
+            Configure your monthly budget to effectively track expenses and savings.
           </p>
         </div>
 
-        <div className="rounded-lg bg-white/80 backdrop-blur-sm p-8 shadow-lg">
-          <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">Budget Details</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {error && (
-                <div className="rounded-lg bg-red-50/80 backdrop-blur-sm p-4 border-l-4 border-red-500">
-                  <p className="text-sm text-red-700">{error}</p>
-                </div>
-              )}
+        <form onSubmit={handleSubmit} className="mt-8 space-y-8">
+          {error && (
+            <div className="rounded-lg bg-[#f72585]/10 p-4 text-[#f72585]">
+              <p className="text-sm font-medium">{error}</p>
+            </div>
+          )}
 
-              <div className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="monthlyIncome"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Monthly Income (₹)
-                  </label>
-                  <input
-                    type="number"
-                    name="monthlyIncome"
-                    id="monthlyIncome"
-                    min="0"
-                    step="100"
-                    required
-                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
-                    placeholder="Enter your monthly income"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="mandatoryExpenses"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Mandatory Expenses (₹)
-                  </label>
-                  <input
-                    type="number"
-                    name="mandatoryExpenses"
-                    id="mandatoryExpenses"
-                    min="0"
-                    step="100"
-                    required
-                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
-                    placeholder="Enter your mandatory expenses"
-                  />
-                  <p className="mt-1 text-sm text-gray-500">
-                    Include rent, utilities, loan payments, etc.
-                  </p>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="savingsGoal"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Monthly Savings Goal (₹)
-                  </label>
-                  <input
-                    type="number"
-                    name="savingsGoal"
-                    id="savingsGoal"
-                    min="0"
-                    step="100"
-                    required
-                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
-                    placeholder="Enter your savings goal"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="daysInMonth"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Days in Month
-                  </label>
-                  <select
-                    name="daysInMonth"
-                    id="daysInMonth"
-                    required
-                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
-                  >
-                    <option value="28">28 days</option>
-                    <option value="29">29 days</option>
-                    <option value="30">30 days</option>
-                    <option value="31">31 days</option>
-                  </select>
-                </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="monthlyIncome" className="block text-sm font-medium text-gray-700">
+                  Monthly Income (₹)
+                </label>
+                <input
+                  type="number"
+                  name="monthlyIncome"
+                  id="monthlyIncome"
+                  min="0"
+                  step="100"
+                  required
+                  className="input-field"
+                  placeholder="Enter your monthly income"
+                />
               </div>
 
-              <div className="flex justify-end space-x-4 pt-6">
-                <button
-                  type="button"
-                  onClick={() => navigate('/')}
-                  className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-white/80 hover:bg-white/90 backdrop-blur-sm border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 disabled:opacity-50"
-                >
-                  {isLoading ? 'Saving...' : 'Save Setup'}
-                </button>
+              <div>
+                <label htmlFor="mandatoryExpenses" className="block text-sm font-medium text-gray-700">
+                  Mandatory Expenses (₹)
+                </label>
+                <input
+                  type="number"
+                  name="mandatoryExpenses"
+                  id="mandatoryExpenses"
+                  min="0"
+                  step="100"
+                  required
+                  className="input-field"
+                  placeholder="Enter your mandatory expenses"
+                />
+                <p className="mt-1 text-sm text-gray-500">
+                  Include rent, utilities, loan payments, etc.
+                </p>
               </div>
-            </form>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="savingsGoal" className="block text-sm font-medium text-gray-700">
+                  Monthly Savings Goal (₹)
+                </label>
+                <input
+                  type="number"
+                  name="savingsGoal"
+                  id="savingsGoal"
+                  min="0"
+                  step="100"
+                  required
+                  className="input-field"
+                  placeholder="Enter your savings goal"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="daysInMonth" className="block text-sm font-medium text-gray-700">
+                  Days in Month
+                </label>
+                <select
+                  name="daysInMonth"
+                  id="daysInMonth"
+                  required
+                  className="input-field"
+                  defaultValue="30"
+                >
+                  <option value="28">28 days</option>
+                  <option value="29">29 days</option>
+                  <option value="30">30 days</option>
+                  <option value="31">31 days</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end space-x-4 pt-6">
+            {isLoading && (
+              <div className="loading-spinner" />
+            )}
+            <button
+              type="button"
+              onClick={() => navigate('/')}
+              className="btn-secondary"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="btn-primary"
+            >
+              {isLoading ? 'Saving...' : 'Save Setup'}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div className="stats-card">
+        <h3 className="text-lg font-semibold text-gray-900">Budget Tips</h3>
+        <div className="mt-4 space-y-4">
+          <div className="flex items-start space-x-3">
+            <div className="flex-shrink-0">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#4361ee]/10">
+                <CurrencyRupeeIcon className="h-4 w-4 text-[#4361ee]" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-900">50/30/20 Rule</p>
+              <p className="text-sm text-gray-600">
+                Allocate 50% for needs, 30% for wants, and 20% for savings.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start space-x-3">
+            <div className="flex-shrink-0">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#4cc9f0]/10">
+                <CurrencyRupeeIcon className="h-4 w-4 text-[#4cc9f0]" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-900">Emergency Fund</p>
+              <p className="text-sm text-gray-600">
+                Aim to save 3-6 months of expenses for emergencies.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+      </div>
+    </div>
   );
 }
