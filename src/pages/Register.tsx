@@ -45,7 +45,9 @@ export default function Register() {
 
   return (
     <div className="register-page bg-main flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-2xl font-bold text-[#4361ee]">BudgetWise</h1>
+      <h1 className="text-6xl font-extrabold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-[#4361ee] via-[#f72585] to-[#4cc9f0] animate-gradient leading-normal py-2">
+        BudgetWise
+      </h1>
       <div className="max-w-md w-full bg-white/80 backdrop-blur-lg rounded-xl shadow-lg p-8 space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -98,7 +100,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
               <input
@@ -106,12 +108,12 @@ export default function Register() {
                 name="password"
                 type="password"
                 required
-                className="relative block w-full rounded-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                placeholder="Password"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
+                placeholder="Enter your password"
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="sr-only">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
                 Confirm Password
               </label>
               <input
@@ -119,8 +121,8 @@ export default function Register() {
                 name="confirmPassword"
                 type="password"
                 required
-                className="relative block w-full rounded-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                placeholder="Confirm Password"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-white/50 backdrop-blur-sm"
+                placeholder="Enter your password again"
               />
             </div>
           </div>
