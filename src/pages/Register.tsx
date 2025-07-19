@@ -44,7 +44,8 @@ export default function Register() {
   };
 
   return (
-    <div className="register-page bg-main flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="register-page bg-main flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl font-bold text-[#4361ee]">BudgetWise</h1>
       <div className="max-w-md w-full bg-white/80 backdrop-blur-lg rounded-xl shadow-lg p-8 space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
