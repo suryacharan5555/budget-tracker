@@ -8,43 +8,6 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Error catcher to show runtime errors when JS fails (helps debugging on Vercel) -->
-    <script>
-      (function () {
-        function showOverlay(message) {
-          try {
-            var overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.right = '0';
-            overlay.style.background = 'rgba(0,0,0,0.85)';
-            overlay.style.color = 'white';
-            overlay.style.zIndex = '999999';
-            overlay.style.padding = '12px 16px';
-            overlay.style.fontFamily = 'monospace';
-            overlay.style.whiteSpace = 'pre-wrap';
-            overlay.textContent = message;
-            document.body.appendChild(overlay);
-          } catch (e) {
-            // ignore
-          }
-        }
-
-        window.addEventListener('error', function (e) {
-          var msg = 'Runtime Error: ' + (e && e.message ? e.message : String(e));
-          showOverlay(msg + '\n\nSee browser console for stack.');
-        });
-
-        window.addEventListener('unhandledrejection', function (e) {
-          var reason = e && e.reason ? e.reason : e;
-          var msg = 'Unhandled Rejection: ' + (reason && reason.message ? reason.message : String(reason));
-          showOverlay(msg + '\n\nSee browser console for details.');
-        });
-      })();
-    </script>
-
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
