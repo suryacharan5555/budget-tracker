@@ -135,6 +135,20 @@ JWT_SECRET=your_jwt_secret
 PORT=8000
 ```
 
+### Vercel (production)
+Set the following Environment Variables in your Vercel project (Project Settings -> Environment Variables):
+
+```text
+MONGODB_URI  # MongoDB connection string (MongoDB Atlas)
+JWT_SECRET   # Secret used to sign JWT tokens
+VITE_API_URL # Optional: set to the full backend URL if you use an external API (otherwise leave blank to use /api)
+```
+
+Notes:
+- Vercel will deploy frontend as a static site and handle serverless functions placed under the `api/` folder. The `api/[...path].js` file wraps your existing Express routes for serverless.
+- Ensure your MongoDB Atlas cluster allows connections from Vercel (add Vercel IPs or allow access from anywhere 0.0.0.0/0 temporarily while testing).
+- On Vercel, the backend will be available at `/api/*` (for example `/api/auth/login`). If you prefer a separate backend host, set `VITE_API_URL` to that host.
+
 ## 📦 Deployment
 
 ### Frontend Deployment (Vercel)
@@ -144,6 +158,23 @@ The frontend is deployed on Vercel with the following configuration:
 - **Environment Variables:** Set in Vercel dashboard
 - **Framework Preset:** Vite
 - **Production URL:** [https://budget-tracker-blue.vercel.app](https://budget-tracker-blue.vercel.app)
+
+### Deploying to Vercel (recommended)
+
+1. Install the Vercel CLI (optional):
+```bash
+npm i -g vercel
+```
+2. From the project root run:
+```bash
+vercel login
+vercel
+```
+3. During `vercel` setup choose the project root and ensure build command is `npm run build` and output directory is `dist`.
+4. In Vercel dashboard add the environment variables listed above.
+5. Trigger a deployment.
+
+If you encounter issues after deploy, check Vercel function logs (Vercel Dashboard -> Functions) and confirm `MONGODB_URI` and `JWT_SECRET` are set.
 
 ### Backend Deployment (Render)
 The backend is hosted on Render with the following setup:
