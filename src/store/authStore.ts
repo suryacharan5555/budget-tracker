@@ -12,18 +12,45 @@ interface AuthState {
   logout: () => void;
 }
 
+const safeGet = (key: string) => {
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) return null;
+    return window.localStorage.getItem(key);
+  } catch (e) {
+    return null;
+  }
+};
+
+const safeSet = (key: string, value: string) => {
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) return;
+    window.localStorage.setItem(key, value);
+  } catch (e) {
+    // ignore
+  }
+};
+
+const safeRemove = (key: string) => {
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) return;
+    window.localStorage.removeItem(key);
+  } catch (e) {
+    // ignore
+  }
+};
+
 export const useAuthStore = create<AuthState>((set) => ({
-  token: localStorage.getItem('token'),
-  isAuthenticated: !!localStorage.getItem('token'),
-  user: JSON.parse(localStorage.getItem('user') || 'null'),
+  token: safeGet('token'),
+  isAuthenticated: !!safeGet('token'),
+  user: JSON.parse(safeGet('user') || 'null'),
   login: (token, user) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    safeSet('token', token);
+    safeSet('user', JSON.stringify(user));
     set({ token, user, isAuthenticated: true });
   },
   logout: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    safeRemove('token');
+    safeRemove('user');
     set({ token: null, user: null, isAuthenticated: false });
   },
 }));
